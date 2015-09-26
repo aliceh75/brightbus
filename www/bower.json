@@ -1,0 +1,24 @@
+{
+  "name": "BrightBus",
+  "version": "0.0.1",
+  "authors": [
+    "Alice Heaton <aliceheaton75@gmail.com>"
+  ],
+  "description": "An intuitive bus time application providing bus stop locations, timetables and live bus times in the UK.",
+  "main": "index.html",
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-route": "~1.4.6",
+    "angular": "~1.4.6"
+  }
+}

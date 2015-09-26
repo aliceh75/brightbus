@@ -1,0 +1,19 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+      <!--Sidebar content-->
+      Search: <input ng-model="query" />
+    </div>
+    <div class="col-md-10">
+      <!--Body content-->
+      <ul class="stops">
+        <li ng-repeat="stop in stops | filter:query | orderBy:'name' | limitTo: 10">
+        <a ng-href="#/stops/{{stop.naptanCode}}">
+          <div class='stop-name'>{{stop.name}}</div>
+          <div class='stop-street'>{{stop.street}}</div>
+        </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
