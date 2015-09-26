@@ -1,15 +1,13 @@
 var brightBusControllers = angular.module('brightBusControllers', []);
 
-brightBusControllers.controller('StopListCtrl', ['$scope', '$http',
-  function ($scope, $http) {
-    $http.get('data/stops.json').success(function(data) {
-      $scope.stops = data;
-    });
+brightBusControllers.controller('StopListCtrl', ['$scope', 'busStopsService',
+  function ($scope, busStopsService) {
+    $scope.stops = busStopsService.list();
   }
 ]);
 
-brightBusControllers.controller('StopDetailCtrl', ['$scope', '$routeParams',
-  function($scope, $routeParams) {
-    $scope.naptanCode = $routeParams.naptanCode;
+brightBusControllers.controller('StopDetailCtrl', ['$scope', '$routeParams', 'busStopsService',
+  function($scope, $routeParams, busStopsService) {
+    $scope.stop = busStopsService.get($routeParams.naptanCode);
   }
 ]);
