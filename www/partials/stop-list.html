@@ -1,17 +1,15 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-2">
-      <!--Sidebar content-->
-      Search: <input ng-model="query" />
+    <div class="col-xs-12 col-sm-4 col-md-2">
+      <input ng-model="query" class="form-control" placeholder="Search" />
     </div>
-    <div class="col-md-10">
-      <!--Body content-->
-      <ul class="stops">
+    <div class="col-xs-12 col-sm-6 col-md-10">
+      <ul class="stop-list">
         <li ng-repeat="stop in stops | filter:query | orderBy:'name' | limitTo: 10">
-        <a ng-href="#/stops/{{stop.naptanCode}}">
-          <div class='stop-name'>{{stop.name}}</div>
-          <div class='stop-street'>{{stop.street}}</div>
-        </a>
+          <a ng-href="#/stops/{{stop.naptanCode}}">
+            <div class='stop-name'>{{stop.friendlyName}}</div>
+            <div class='stop-street'>{{stop.street}}</div>
+          </a
         </li>
       </ul>
     </div>

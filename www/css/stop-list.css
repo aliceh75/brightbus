@@ -1,0 +1,27 @@
+.stop-list {
+  list-style: none;
+  padding: 0;
+}
+
+.stop-list a, .stop-list a:visited, .stop-list a:hover {
+  color: #000;
+  text-decoration: none;
+  display: block;
+}
+
+.stop-list li {
+  border-bottom: 2px solid #AAA;
+  padding: 5px 0;
+}
+
+.stop-list li:hover {
+  background-color: #EEE;
+}
+
+.stop-list .stop-name {
+  display: inline-block;
+}
+
+.stop-list .stop-indicator {
+  display: inline-block;
+}
