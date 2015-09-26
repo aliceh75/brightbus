@@ -1,27 +1,36 @@
-.stop-list {
+#stop-list-page ul {
   list-style: none;
   padding: 0;
 }
 
-.stop-list a, .stop-list a:visited, .stop-list a:hover {
+#stop-list-page a, #stop-list-page a:visited, #stop-list-page a:hover {
   color: #000;
   text-decoration: none;
   display: block;
 }
 
-.stop-list li {
+#stop-list-page li {
   border-bottom: 2px solid #AAA;
   padding: 5px 0;
 }
 
-.stop-list li:hover {
-  background-color: #EEE;
-}
-
-.stop-list .stop-name {
+#stop-list-page .stop-name {
   display: inline-block;
 }
 
-.stop-list .stop-indicator {
+#stop-list-page .stop-indicator {
   display: inline-block;
+}
+
+#stop-list-page .search-form {
+  position: fixed;
+  height: 2em;
+  z-index: 100;
+  top: 0;
+  padding-top: 1em;
+  background: #FFF;
+}
+
+#stop-list-page .stop-list {
+  margin-top: 4em;
 }

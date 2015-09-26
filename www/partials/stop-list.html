@@ -1,15 +1,15 @@
-<div class="container-fluid">
+<div id='stop-list-page' class="container-fluid">
   <div class="row">
-    <div class="col-xs-12 col-sm-4 col-md-2">
+    <div class="search-form col-xs-12 col-sm-4 col-md-2">
       <input ng-model="query" class="form-control" placeholder="Search" />
     </div>
-    <div class="col-xs-12 col-sm-6 col-md-10">
-      <ul class="stop-list">
+    <div class="stop-list col-xs-12 col-sm-4 col-md-2">
+      <ul>
         <li ng-repeat="stop in stops | filter:query | orderBy:'name' | limitTo: 10">
           <a ng-href="#/stops/{{stop.naptanCode}}">
             <div class='stop-name'>{{stop.friendlyName}}</div>
             <div class='stop-street'>{{stop.street}}</div>
-          </a
+          </a>
         </li>
       </ul>
     </div>
