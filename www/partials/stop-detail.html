@@ -1,1 +1,18 @@
-time view for {{stop.name}} on {{stop.street}}.
+<div id='stop-detail-page' class="container-fluid">
+  <div class="row stop-info">
+    <div class="col-xs-9 col-sm-4">
+      <div class='stop-name'>{{stop.friendlyName}}</div>
+      <div class='stop-street'>{{stop.street}}</div>
+    </div>
+    <div class="col-xs-2">
+      <button type="submit" class="btn btn-primary" ng-click="refreshTimes()">
+        <span class="glyphicon glyphicon-refresh"></span>
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-4 stop-times">
+      <div ng-bind-html="stop_times"></div>
+    </div>
+  </div>
+</div>

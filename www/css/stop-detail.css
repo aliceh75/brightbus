@@ -1,0 +1,22 @@
+#stop-detail-page .stop-info {
+  padding-bottom: 5px;
+  border-bottom: 2px solid #AAA;
+}
+
+#stop-detail-page .stop-info button {
+  margin-right: 15px;
+}
+
+#stop-detail-page .stop-times {
+  margin-top: 10px;
+}
+
+#stop-detail-page .stop-times table {
+  width: 100%;
+}
+
+#stop-detail-page .stop-times .rowStopName,
+#stop-detail-page .stop-times .textHeader,
+#stop-detail-page .stop-times .services {
+  display: none;
+}

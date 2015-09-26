@@ -1,5 +1,29 @@
 var brightBusServices = angular.module('brightBusServices', []);
 
+/* Service used to fetch bus times */
+brightBusServices.service('busTimesService', ['$http', '$q',
+    function ($http, $q) {
+      this.getBusTimes = function(naptan_code) {
+        return $q(function(resolve, reject) {
+          var search_url = "http://bh.buscms.com/api/rest/ent/stop.aspx?callback=JSON_CALLBACK&clientid=BrightonBuses&method=search&format=jsonp&q=" + naptan_code;
+          $http.jsonp(search_url).success(function(data) {
+            var stop_id = 0;
+            for (var i=0; i < data['result'].length; i++) {
+              if (data['result'][i].NaptanCode == naptan_code) {
+                stop_id = data['result'][i].stopId;
+              }
+            }
+            var times_url = "http://bh.buscms.com/api/REST/html/departureboard.aspx?callback=JSON_CALLBACK&clientid=BrightonBuses&sourcetype=siri&format=jsonp&stopid=" + stop_id;
+            $http.jsonp(times_url).success(function(data) {
+              resolve(data);
+            });
+          });
+        });
+      };
+    }
+]);
+
+/* Service used to create the list of bus stops */
 brightBusServices.service('busStopsService', ['$http',
   function ($http) {
     var stops = [];
