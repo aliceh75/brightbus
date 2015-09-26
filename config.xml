@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="info.loveisanalogue.brightbus" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>BrightBus</name>
+    <description>
+        An intuitive bus time application providing bus stop locations, timetables and live bus times in the UK. 
+    </description>
+    <author email="brightbus@loveisanalogue.info" href="http://brightbus.loveisanalogue.info">
+      Alice Heaton
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+</widget>
