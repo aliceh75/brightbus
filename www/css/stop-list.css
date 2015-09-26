@@ -14,14 +14,6 @@
   padding: 5px 0;
 }
 
-#stop-list-page .stop-name {
-  display: inline-block;
-}
-
-#stop-list-page .stop-indicator {
-  display: inline-block;
-}
-
 #stop-list-page .search-form {
   position: fixed;
   height: 2em;
