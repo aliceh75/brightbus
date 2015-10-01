@@ -1,8 +1,12 @@
 var brightBusControllers = angular.module('brightBusControllers', []);
 
-brightBusControllers.controller('StopListCtrl', ['$scope', 'busStopsService',
-  function ($scope, busStopsService) {
+brightBusControllers.controller('StopListCtrl', ['$scope', 'busStopsService', 'searcherService',
+  function ($scope, busStopsService, searcherService) {
     $scope.stops = busStopsService.list();
+    $scope.query = searcherService.getFilter();
+    $scope.filterChange = function() {
+      searcherService.setFilter($scope.query);
+    }
   }
 ]);
 

@@ -1,5 +1,16 @@
 var brightBusServices = angular.module('brightBusServices', []);
 
+/* Service used to store the application search settings */
+brightBusServices.service('searcherService', function() {
+  var filter = '';
+  this.getFilter = function() {
+    return filter;
+  }
+  this.setFilter = function(str) {
+    filter = str;
+  }
+});
+
 /* Service used to fetch bus times */
 brightBusServices.service('busTimesService', ['$http', '$q',
     function ($http, $q) {

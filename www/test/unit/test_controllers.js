@@ -19,12 +19,34 @@ describe('StopListCtrl', function() {
         return stop_data;
       }
   };
+  var mockSearcherService = {
+    getFilter: function() {
+      return 'the search';
+    },
+    setFilter: function(f) {
+      this.filter = f;
+    }
+  };
 
   // Tests
   it('Should invoke the busStopService to create a list of stops', inject(function($controller) {
     var scope = {};
     var ctrl = $controller('StopListCtrl', {$scope:scope, busStopsService: mockBusStopsService});
     expect(scope.stops).toEqual(stop_data);
+  }));
+
+  it('Should initialise the filter using the searcherService', inject(function($controller) {
+    var scope = {};
+    var ctrl = $controller('StopListCtrl', {$scope:scope, busStopsService: mockBusStopsService, searcherService: mockSearcherService});
+    expect(scope.query).toEqual('the search');
+  }));
+
+  it('Should provide a function for the partial to update the searcher service', inject(function($controller) {
+    var scope = {};
+    var ctrl = $controller('StopListCtrl', {$scope:scope, busStopsService: mockBusStopsService, searcherService: mockSearcherService});
+    scope.query = 'something';
+    scope.filterChange();
+    expect(mockSearcherService.filter).toEqual('something');
   }));
 });
 
