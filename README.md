@@ -40,6 +40,15 @@ sudo apt-get install npm
 sudo npm -g install cordova@4.3.0
 sudo npm -g install bower
 ```
+
+### Install cordova dependencies
+
+There's a script to do just that:
+
+```bash
+./setup.sh
+```
+
 ### Install Javascript dependencies
 
 ```shell
