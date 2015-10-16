@@ -11,4 +11,6 @@ settings={
     'tnds_ftp': 'ftp://ftp.tnds.basemap.co.uk',
     'tnds_stops_zip_file': 'SE.zip',
     'tnds_service_file': 'servicereport.csv',
+    'tnds_file_glob': 'set_[4-6]-*.xml',
+    'stop_line_info_file': 'stop_line_info.json'
 }

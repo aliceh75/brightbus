@@ -58,7 +58,7 @@ bower install
 
 ### Build the stops database
 
-This is done using the Python script in `databuilder/databuilder.py`. If you are not familiar with Python, I would advise to install Python, [pip]( https://pypi.python.org/pypi/pip) and [virtualenv](https://pypi.python.org/pypi/virtualenv):
+This is done using the Python scripts in `databuilder`. If you are not familiar with Python, I would advise to install Python, [pip]( https://pypi.python.org/pypi/pip) and [virtualenv](https://pypi.python.org/pypi/virtualenv):
 
 ```shell
 sudo apt-get install python python-pip python-virtualenv
@@ -74,16 +74,40 @@ pip install -r requirements.txt
 deactivate
 ```
 
-Now everytime you want to run the `databuilder` script you can do:
+Building the data takes several steps. Before running any of those steps, you need to activate the virtual environmnet:
 
 ```shell
 cd databuilder
 source .ve/bin/activate
+```
+
+First you need to download the data. The [Naptan dataset](https://data.gov.uk/dataset/naptan) is directly available, however to get the [Traveline National Dataset](https://data.gov.uk/dataset/traveline-national-dataset) you will need to get an FTP username and password from Traveline by applying at [http://www.travelinedata.org.uk/traveline-open-data/traveline-national-dataset/](http://www.travelinedata.org.uk/traveline-open-data/traveline-national-dataset/).
+
+Once you have the username and password, you can download and extract all the required data by running:
+
+```shell
+./download_data_files.py -a <tnds ftp username> -p <tnds ftp password>
+```
+
+You can then build an intermediary file that is used to index which bus line stops at which stops (this is why we need the TNDS data - everything else comes from the Naptan database):
+
+```shell
+./build_stop_line_info.py
+```
+
+And finally you can build the database that is used by **BrightBus**:
+
+```shell
 ./databuilder.py
-deactivate
 ```
 
 Running the script will create the stops file in `www/data/stops.json`. You only need to rebuild it if the source data (but stops and lines information) has changed - or possibly when upgrading **Brightbus**, check the release notes for each release.
+
+To exit the virtual environment, you can run:
+
+```shell
+deactivate
+```
 
 ### Run on android!
 

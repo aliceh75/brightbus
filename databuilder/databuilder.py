@@ -34,12 +34,21 @@ def build_stops_database():
         settings['build_folder'],
         settings['stops_file']
     )
+    stop_line_info_file_name = os.path.join(
+        settings['build_folder'],
+        settings['stop_line_info_file']
+    )
+    with open(stop_line_info_file_name) as f:
+        line_info = json.load(f)
     naptan_less_count = 0
     database = []
     with open(stops_file_name) as stops_file:
         reader = csv.DictReader(stops_file)
         for row in reader:
             if row['LocalityName'] in settings['localities']:
+                lines = []
+                if row['AtcoCode'] in line_info:
+                    lines = line_info[row['AtcoCode']]
                 obj = {
                     'name': row['CommonName'],
                     'indicator': row['Indicator'],
@@ -47,7 +56,8 @@ def build_stops_database():
                     'lat': row['Latitude'],
                     'long': row['Longitude'],
                     'bearing': row['Bearing'],
-                    'street': row['Street']
+                    'street': row['Street'],
+                    'lines': lines
                 }
                 if obj['naptanCode'] != '':
                     database.append(obj)
