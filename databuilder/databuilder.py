@@ -28,6 +28,41 @@ from utils import BuildError, out, run_command, backup_and_remove
 
 __version__ = 'BrightBus Data Builder 0.2.'
 
+
+def get_stop_definition(stop_info, line_info):
+    """ Return the json object to store for a given stop """
+    # Create friendly name
+    ind_prefix_map = {
+        'opp': 'Opposite',
+        'adj': 'Adjacent to',
+        'o/s': 'Outside',
+        'Entrance': 'Entrance of'
+    }
+    if stop_info['Indicator']:
+        ind = stop_info['Indicator']
+        if ind in ind_prefix_map:
+            friendly_name = ind_prefix_map[ind] + ' ' + stop_info['CommonName']
+        else:
+            friendly_name = stop_info['CommonName'] + ' (' + ind + ')'
+    else:
+        friendly_name = stop_info['CommonName']
+    # Get the bus lines
+    lines = []
+    if stop_info['AtcoCode'] in line_info:
+        lines = line_info[stop_info['AtcoCode']]
+    # Create the base object
+    obj = {
+        'name': friendly_name,
+        'naptanCode': stop_info['NaptanCode'],
+        'lat': stop_info['Latitude'],
+        'long': stop_info['Longitude'],
+        'street': stop_info['Street'],
+        'lines': lines,
+        'order': stop_info['CommonName']
+    }
+    return obj
+
+
 def build_stops_database():
     """ Build the stops database """
     stops_file_name = os.path.join(
@@ -46,23 +81,15 @@ def build_stops_database():
         reader = csv.DictReader(stops_file)
         for row in reader:
             if row['LocalityName'] in settings['localities']:
-                lines = []
-                if row['AtcoCode'] in line_info:
-                    lines = line_info[row['AtcoCode']]
-                obj = {
-                    'name': row['CommonName'],
-                    'indicator': row['Indicator'],
-                    'naptanCode': row['NaptanCode'],
-                    'lat': row['Latitude'],
-                    'long': row['Longitude'],
-                    'bearing': row['Bearing'],
-                    'street': row['Street'],
-                    'lines': lines
-                }
+                obj = get_stop_definition(row, line_info)
                 if obj['naptanCode'] != '':
                     database.append(obj)
                 else:
                     naptan_less_count += 1
+    # Order them, and remove order info as it's not needed.
+    database = sorted(database, key=lambda o: o['order'])
+    for o in database:
+        del o['order']
     out("Found {c} stops.".format(c=len(database)))
     if naptan_less_count > 0:
         out("{x} stops didn't have a Naptan code and were ignored.".format(x=naptan_less_count))
