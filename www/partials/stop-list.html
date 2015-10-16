@@ -10,6 +10,7 @@
         <li ng-repeat="stop in stops | filter:query | orderBy:'name' | limitTo: 10">
           <a ng-href="#/stops/{{stop.naptanCode}}">
             <div class='stop-name'>{{stop.friendlyName}}</div>
+            <div class='stop-lines'>{{stop.lines.join(' ')}}</div>
             <div class='stop-street'>{{stop.street}}</div>
           </a>
         </li>

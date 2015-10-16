@@ -26,3 +26,7 @@
 #stop-list-page .stop-list {
   margin-top: 4em;
 }
+
+#stop-list-page .stop-lines {
+  float: right;
+}
