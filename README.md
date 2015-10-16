@@ -124,3 +124,12 @@ sudo /usr/local/android-sdk-linux/platform-tools/adb start-server
 ```
 
 And try again. Good luck!
+
+### Testing
+
+Tests are implented using [Karma](https://karma-runner.github.io). To run the tests run:
+
+```shell
+cd www/tests
+karma start
+```
