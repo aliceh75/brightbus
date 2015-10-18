@@ -1,6 +1,7 @@
 var brightBusApp = angular.module('brightBusApp', [
   'ngRoute',
   'brightBusServices',
+  'brightBusFilters',
   'brightBusControllers',
   'ui.bootstrap'
 ]);

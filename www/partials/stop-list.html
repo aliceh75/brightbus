@@ -7,7 +7,7 @@
   <div class="row">
     <div class="stop-list col-xs-12 col-sm-4">
       <ul>
-        <li ng-repeat="stop in stops | filter:query | limitTo: 10">
+        <li ng-repeat="stop in stops | wordSearchFilter:query | limitTo: 10">
           <a ng-href="#/stops/{{stop.naptanCode}}">
             <div class='stop-name'>{{stop.name}}</div>
             <div class='stop-lines'>{{stop.lines.join(' ')}}</div>

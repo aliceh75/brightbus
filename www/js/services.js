@@ -44,6 +44,13 @@ brightBusServices.service('busStopsService', ['$http',
     this.promise = $http.get('data/stops.json').success(function(data) {
       stops = data;
 
+      // Prepare search data
+      for (var i = 0; i < stops.length; i++) {
+        stops[i].search =
+          stops[i].name.toLowerCase() + ' ' +
+          stops[i].street.toLowerCase() + ' ' +
+          stops[i].lines.join(' ');
+      }
       // Prepare a naptanCode index
       for (var i = 0; i < stops.length; i++) {
         index[stops[i].naptanCode] = stops[i];

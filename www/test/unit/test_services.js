@@ -6,21 +6,33 @@ describe('busStopsService', function() {
   var stop_data = [{
     naptanCode: 'c1',
     name: 'name1',
+    street: 'street1',
+    lines: ['line1']
   },{
     naptanCode: 'c2',
     name: 'name2',
+    street: 'street2',
+    lines: ['line2']
   },{
     naptanCode: 'c3',
     name: 'name3',
+    street: 'street3',
+    lines: ['line3']
   },{
     naptanCode: 'c4',
     name: 'name4',
+    street: 'street4',
+    lines: ['line4']
   },{
     naptanCode: 'c5',
     name: 'name5',
+    street: 'street5',
+    lines: ['line5']
   }, {
     naptanCode: 'c6',
     name: 'name6',
+    street: 'street6',
+    lines: ['line6']
   }];
 
   // Mocks
@@ -59,9 +71,10 @@ describe('busStopsService', function() {
   });
 
   it('Should return the requested stop when get is invoked with naptanCode', function() {
-    expect(busStopsService.get('c2')).toEqual({
-      naptanCode: 'c2', 
-      name: 'name2', 
-    });
+    expect(busStopsService.get('c2').name).toEqual('name2');
+  });
+
+  it('Should build a list of words for each entry', function() {
+    expect(busStopsService.get('c2').search).toEqual('name2 street2 line2');
   });
 });

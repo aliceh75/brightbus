@@ -7,10 +7,14 @@ describe('StopListCtrl', function() {
   // Canned stop data
   var stop_data = [{
     naptanCode: 'c1',
-    friendlyName: 'n1'
+    name: 'n1',
+    street: 's1',
+    lines: ['l1']
   },{
     naptanCode: 'c2',
-    friendlyName: 'n2'
+    name: 'n2',
+    street: 's2',
+    lines: ['l2']
   }];
 
   // Mock service
