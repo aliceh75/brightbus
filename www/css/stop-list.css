@@ -1,25 +1,37 @@
-#stop-list-page ul {
+#stop-list-page .stop-list ul {
   list-style: none;
   padding: 0;
 }
 
-#stop-list-page a, #stop-list-page a:visited, #stop-list-page a:hover {
+#stop-list-page .stop-list a, 
+#stop-list-page .stop-list a:visited, 
+#stop-list-page .stop-list a:hover {
   color: #000;
   text-decoration: none;
   display: block;
 }
 
-#stop-list-page li {
+#stop-list-page .stop-list li {
   border-bottom: 2px solid #AAA;
   padding: 5px 0;
 }
 
-#stop-list-page .search-form {
+#stop-list-page bb-list-page-nav {
   position: fixed;
-  height: 2em;
   z-index: 100;
   top: 0;
-  padding-top: 1em;
+  background: #FFF;
+}
+
+#stop-list-page bb-list-page-nav li a {
+  padding: 5px 10px;
+}
+
+#stop-list-page .search-form {
+  position: fixed;
+  z-index: 99;
+  padding-top: 0.5em;
+  top: 2em;
   background: #FFF;
 }
 
