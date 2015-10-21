@@ -4,8 +4,13 @@ brightBusControllers.controller('StopListCtrl', ['$scope', 'busStopsService', 's
   function ($scope, busStopsService, searcherService) {
     $scope.stops = busStopsService.list();
     $scope.query = searcherService.getFilter();
+    $scope.show_favs = searcherService.getShowFavs();
     $scope.filterChange = function() {
       searcherService.setFilter($scope.query);
+    }
+    $scope.toggleShowFavs = function() {
+      $scope.show_favs = !$scope.show_favs;
+      searcherService.setShowFavs($scope.show_favs);
     }
   }
 ]);

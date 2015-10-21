@@ -1,7 +1,19 @@
 <div id='stop-list-page' class="container-fluid">
   <div class="row">
     <div class="search-form col-xs-12 col-sm-4">
-      <input ng-model="query" ng-change="filterChange()" class="form-control" placeholder="Search" />
+      <div class="row">
+        <div class="col-xs-1 col-sm-1">
+          <i ng-click="toggleShowFavs()"
+             class="glyphicon icon-toggle"
+             ng-class="{true: 'glyphicon-star', false: 'glyphicon-star-empty'}[show_favs]"></i>
+        </div>
+        <div class="col-xs-11 col-sm-11">
+          <input ng-model="query"
+                 ng-change="filterChange()"
+                 class="form-control"
+                 placeholder="Search" />
+        </div>
+      </div>
     </div>
   </div>
   <div class="row">

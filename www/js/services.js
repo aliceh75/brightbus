@@ -3,11 +3,18 @@ var brightBusServices = angular.module('brightBusServices', []);
 /* Service used to store the application search settings */
 brightBusServices.service('searcherService', function() {
   var filter = '';
+  var show_favs = false;
   this.getFilter = function() {
     return filter;
   }
+  this.getShowFavs = function() {
+    return show_favs;
+  }
   this.setFilter = function(str) {
     filter = str;
+  }
+  this.setShowFavs = function(val) {
+    show_favs = val;
   }
 });
 
