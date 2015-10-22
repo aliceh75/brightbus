@@ -78,3 +78,26 @@ describe('busStopsService', function() {
     expect(busStopsService.get('c2').search).toEqual('name2 street2 line2');
   });
 });
+
+/*
+ * Test the persistService
+ */
+describe('persistService', function() {
+  var persistService;
+  beforeEach(function() {
+    inject(function(_persistService_) {
+      persistService = _persistService_;
+    });
+  });
+
+  it('Should restore favourite status based on naptanCode', function() {
+    var stop = {
+      naptanCode: 'n1',
+      favourite: true
+    };
+    persistService.save(stop);
+    stop.favourite = false;
+    persistService.restore(stop);
+    expect(stop.favourite).toBe(true);
+  });
+});

@@ -1,7 +1,7 @@
 var brightBusControllers = angular.module('brightBusControllers', []);
 
-brightBusControllers.controller('StopListCtrl', ['$scope', 'busStopsService', 'searcherService',
-  function ($scope, busStopsService, searcherService) {
+brightBusControllers.controller('StopListCtrl', ['$scope', 'busStopsService', 'searcherService', 'persistService',
+  function ($scope, busStopsService, searcherService, persistService) {
     $scope.stops = busStopsService.list();
     $scope.query = searcherService.getFilter();
     $scope.show_favs = searcherService.getShowFavs();
@@ -11,6 +11,10 @@ brightBusControllers.controller('StopListCtrl', ['$scope', 'busStopsService', 's
     $scope.toggleShowFavs = function() {
       $scope.show_favs = !$scope.show_favs;
       searcherService.setShowFavs($scope.show_favs);
+    }
+    $scope.toggleStopFavStatus = function(stop) {
+      stop.favourite = !stop.favourite;
+      persistService.save(stop);
     }
   }
 ]);

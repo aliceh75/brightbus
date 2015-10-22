@@ -1,13 +1,13 @@
 <div id='stop-list-page' class="container-fluid">
   <div class="row">
     <div class="search-form col-xs-12 col-sm-4">
-      <div class="row">
-        <div class="col-xs-1 col-sm-1">
+      <div class="row vertical-align">
+        <div class="col-xs-2 col-sm-2">
           <i ng-click="toggleShowFavs()"
              class="glyphicon icon-toggle"
              ng-class="{true: 'glyphicon-star', false: 'glyphicon-star-empty'}[show_favs]"></i>
         </div>
-        <div class="col-xs-11 col-sm-11">
+        <div class="col-xs-10 col-sm-10 col-icon">
           <input ng-model="query"
                  ng-change="filterChange()"
                  class="form-control"
@@ -19,12 +19,21 @@
   <div class="row">
     <div class="stop-list col-xs-12 col-sm-4">
       <ul>
-        <li ng-repeat="stop in stops | wordSearchFilter:query | limitTo: 10">
-          <a ng-href="#/stops/{{stop.naptanCode}}">
-            <div class='stop-name'>{{stop.name}}</div>
-            <div class='stop-lines'>{{stop.lines.join(' ')}}</div>
-            <div class='stop-street'>{{stop.street}}</div>
-          </a>
+        <li ng-repeat="stop in stops | favouritesFilter:show_favs | wordSearchFilter:query | limitTo: 10">
+          <div class="row vertical-align">
+            <div class='col-xs-10 col-sm-10'>
+              <a ng-href="#/stops/{{stop.naptanCode}}">
+                <div class='stop-name'>{{stop.name}}</div>
+                <div class='stop-lines'>{{stop.lines.join(' ')}}</div>
+                <div class='stop-street'>{{stop.street}}</div>
+              </a>
+            </div>
+            <div class='col-xs-2 col-sm-2 col-icon'>
+              <i ng-click="toggleStopFavStatus(stop)"
+                 class="glyphicon icon-toggle"
+                 ng-class="{true: 'glyphicon-star', false: 'glyphicon-star-empty'}[stop.favourite]"></i>
+            </div>
+          </div>
         </li>
       </ul>
     </div>

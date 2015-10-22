@@ -18,6 +18,43 @@ brightBusServices.service('searcherService', function() {
   }
 });
 
+/* Service used to store/fetch stop persistent values (favourite status) */
+brightBusServices.service('persistService', function() {
+  var schema = 1;
+  var store = localStorage.getItem('bbpersist');
+  if (store && typeof(store.schema) != 'undefined') {
+    store = JSON.parse(store);
+    if (store.schema != schema) {
+      throw "Unsupported schema " + store.schema;
+    }
+  } else {
+    store = {
+      schema: schema,
+      favourites: [],
+    };
+  }
+  // Restore peristant info on given stop.
+  this.restore = function(stop) {
+    stop.favourite = store.favourites.indexOf(stop.naptanCode) >= 0;
+  }
+  // Store persistant data of given stop
+  this.save = function(stop) {
+    var pos = store.favourites.indexOf(stop.naptanCode);
+    if (pos >= 0) {
+      if (stop.favourite) {
+        return;
+      }
+      store.favourites.splice(pos, 1);
+    } else {
+      if (!stop.favourite) {
+        return;
+      }
+      store.favourites.push(stop.naptanCode);
+    }
+    localStorage.setItem('bbpersist', JSON.stringify(store));
+  }
+});
+
 /* Service used to fetch bus times */
 brightBusServices.service('busTimesService', ['$http', '$q',
     function ($http, $q) {
@@ -42,15 +79,18 @@ brightBusServices.service('busTimesService', ['$http', '$q',
 ]);
 
 /* Service used to create the list of bus stops */
-brightBusServices.service('busStopsService', ['$http',
-  function ($http) {
+brightBusServices.service('busStopsService', ['$http', 'persistService',
+  function ($http, persistService) {
     var stops = [];
     var index = {};
 
     /* Fetch the data and set a promise */
     this.promise = $http.get('data/stops.json').success(function(data) {
       stops = data;
-
+      // Restore persistent values
+      for (var i = 0; i < stops.length; i++) {
+        persistService.restore(stops[i]);
+      }
       // Prepare search data
       for (var i = 0; i < stops.length; i++) {
         stops[i].search =

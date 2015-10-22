@@ -13,7 +13,8 @@ Initial release. See README.md for deployment instructions
 
 ## 0.3
 - Add favorites
-- Refactor
+- Look into UiScroll https://github.com/angular-ui/ui-scroll
+- Implement one time binding
 
 ## 0.2
 - Word search, rather than string search (done)

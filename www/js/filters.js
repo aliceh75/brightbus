@@ -22,3 +22,14 @@ brightBusFilters.filter('wordSearchFilter', function() {
     });
   }
 });
+
+brightBusFilters.filter('favouritesFilter', function() {
+  return function(items, show_favs) {
+    if (!show_favs) {
+      return items;
+    }
+    return items.filter(function(e) {
+      return e.favourite;
+    });
+  }
+});
