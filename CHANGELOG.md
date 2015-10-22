@@ -15,6 +15,8 @@ Initial release. See README.md for deployment instructions
 - Add favorites
 - Look into UiScroll https://github.com/angular-ui/ui-scroll
 - Implement one time binding
+- Investigate touch delay. Change star on mouse/touch down?
+- Make stars smaller, but with large touch area.
 
 ## 0.2
 - Word search, rather than string search (done)
