@@ -17,6 +17,7 @@ import csv
 import glob
 import json
 import os
+import re
 import xml.etree.ElementTree
 
 from docopt import docopt
@@ -35,7 +36,8 @@ def get_line_name_index():
     with open(service_file) as f:
         reader = csv.DictReader(f)
         for row in reader:
-            name_index[row['ServiceCode']] = row['LineName']
+            line_name = re.sub('\|.*$', '', row['LineName'])
+            name_index[row['ServiceCode']] = line_name
     return name_index
 
 def build_stop_line_info_file(stop_line_info_file, name_index):
