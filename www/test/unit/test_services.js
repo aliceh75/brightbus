@@ -51,7 +51,7 @@ describe('busStopsService', function() {
       });
     });
 
-    inject(function($httpBackend, _busStopsService_) {
+    inject(function(_busStopsService_) {
       busStopsService = _busStopsService_;
     });
   });
