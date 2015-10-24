@@ -85,6 +85,7 @@ describe('busStopsService', function() {
 describe('persistService', function() {
   var persistService;
   beforeEach(function() {
+    module('brightBusApp');
     inject(function(_persistService_) {
       persistService = _persistService_;
     });

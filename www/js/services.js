@@ -21,9 +21,12 @@ brightBusServices.service('searcherService', function() {
 /* Service used to store/fetch stop persistent values (favourite status) */
 brightBusServices.service('persistService', function() {
   var schema = 1;
-  var store = localStorage.getItem('bbpersist');
+  var store_str = localStorage.getItem('bbpersist');
+  var store = null;
+  if (store_str) {
+    store = JSON.parse(store_str);
+  }
   if (store && typeof(store.schema) != 'undefined') {
-    store = JSON.parse(store);
     if (store.schema != schema) {
       throw "Unsupported schema " + store.schema;
     }
