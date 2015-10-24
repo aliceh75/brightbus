@@ -1,12 +1,3 @@
-#stop-detail-page .stop-info {
-  padding-bottom: 5px;
-  border-bottom: 2px solid #AAA;
-}
-
-#stop-detail-page .stop-info button {
-  margin-right: 15px;
-}
-
 #stop-detail-page .stop-times {
   margin-top: 10px;
 }

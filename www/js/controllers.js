@@ -19,14 +19,18 @@ brightBusControllers.controller('StopListCtrl', ['$scope', 'busStopsService', 's
   }
 ]);
 
-brightBusControllers.controller('StopDetailCtrl', ['$scope', '$routeParams', '$sce', 'busStopsService', 'busTimesService',
-  function($scope, $routeParams, $sce, busStopsService, busTimesService) {
+brightBusControllers.controller('StopDetailCtrl', ['$scope', '$routeParams', '$sce', 'busStopsService', 'busTimesService', 'persistService',
+  function($scope, $routeParams, $sce, busStopsService, busTimesService, persistService) {
     $scope.stop = busStopsService.get($routeParams.naptanCode);
     $scope.refreshTimes = function() {
       $scope.stop_times = $sce.trustAsHtml('Fetching stop times ...');
       busTimesService.getBusTimes($routeParams.naptanCode).then(function(result) {
         $scope.stop_times = $sce.trustAsHtml(result);
       });
+    }
+    $scope.toggleStopFavStatus = function(stop) {
+      stop.favourite = !stop.favourite;
+      persistService.save(stop);
     }
     $scope.refreshTimes();
   }

@@ -11,8 +11,24 @@
   color: #AAA;
 }
 
+a.icon-action,
+i.icon-action {
+  cursor: pointer;
+  font-size: 21px;
+  color: #888;
+  text-decoration: none;
+}
+
 i.icon-toggle {
   cursor: pointer;
-  font-size: 1.5em;
+  font-size: 21px;
   color: #2db6d8;
+}
+
+.row-divider {
+  border-bottom: 2px solid #AAA;
+}
+
+.row-spacer {
+  padding-bottom: 5px;
 }
