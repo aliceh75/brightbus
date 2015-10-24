@@ -13,15 +13,6 @@
 
 i.icon-toggle {
   cursor: pointer;
-  font-size: 3em;
-  color: #F9A825;
-}
-
-div.col-icon {
-/*  padding: 0;*/
-}
-
-.vertical-align {
-  display: flex;
-  align-items: center;
+  font-size: 1.5em;
+  color: #2db6d8;
 }
